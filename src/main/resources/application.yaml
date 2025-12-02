@@ -19,6 +19,15 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        enable_lazy_load_no_trans: true
+        bytecode:
+          enhancement:
+            lazy_attribute_fetching: true
+
+# JWT配置
+jwt:
+  secret: 7f4dcc3b5aa765d61d8327deb882cf99b6d7f99f2b07b3d4a87a57b0c2e1d4c3
+  expiration: 86400000  # 24小时，单位毫秒
 
 # 服务器配置
 server:
