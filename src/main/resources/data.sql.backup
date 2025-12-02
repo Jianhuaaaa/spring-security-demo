@@ -1,0 +1,13 @@
+-- 初始化角色数据
+-- INSERT INTO roles (name) VALUES ('ROLE_USER') ON DUPLICATE KEY UPDATE name=name;
+-- INSERT INTO roles (name) VALUES ('ROLE_ADMIN') ON DUPLICATE KEY UPDATE name=name;
+
+-- 可选：创建默认管理员用户
+-- INSERT INTO users (username, password, email, full_name, created_at, updated_at)
+-- VALUES ('admin', '$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW', 'admin@example.com', 'Admin User', NOW(), NOW())
+-- ON DUPLICATE KEY UPDATE username=username;
+
+-- 可选：给管理员分配ADMIN角色
+-- INSERT INTO user_roles (user_id, role_id)
+-- VALUES ((SELECT id FROM users WHERE username='admin'), (SELECT id FROM roles WHERE name='ROLE_ADMIN'))
+-- ON DUPLICATE KEY UPDATE user_id=user_id;

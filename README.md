@@ -23,50 +23,19 @@ DELETE: http://localhost:8080/api/users/{id}
     password:
 ```
 
-## Spring Security Dependencies
+## 通过构造函数注入使用
 
-```markdown
-<!-- Start of Spring Security Dependencies -->
+使用提示：
+需要确保Role实体类中的RoleName枚举正确定义
+该 Repository 会被 Spring 自动扫描并创建实例
+在 Service 中通过构造函数注入使用：
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <!-- Spring Security OAuth2 Resource Server (for JWT) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-        <!-- JWT Support -->
-        <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>10.5</version>
-        </dependency>
-        <!-- 密码加密 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
-        </dependency>
-        <!-- JJWT 核心API（必须） -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.12.6</version>
-        </dependency>
-        <!-- JJWT 实现（运行时依赖） -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.12.6</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- JJWT JSON 序列化（Jackson） -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>0.12.6</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- End of Spring Security Dependencies -->
+```java
+
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final RoleRepository roleRepository;
+    // ...其他代码
+}
 ```
